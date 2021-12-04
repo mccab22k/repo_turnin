@@ -104,6 +104,7 @@ def sendOnePing(mySocket, destAddr, ID):
 	# Both LISTS and TUPLES consist of a number of objects
 	# which can be referenced by their position number within the object.
 
+array = []
 #no change
 def doOnePing(destAddr, timeout):
 	icmp = getprotobyname("icmp")
@@ -112,6 +113,9 @@ def doOnePing(destAddr, timeout):
 	myID = os.getpid() & 0xFFFF  # Return the current process i
 	sendOnePing(mySocket, destAddr, myID)
 	delay = receiveOnePing(mySocket, myID, timeout, destAddr)
+
+	array.append(delay)
+
 	mySocket.close()
 	return delay
 
@@ -123,16 +127,16 @@ def ping(host, timeout=1):
 	print("")
 	
 	# array=[0]*15
-	array=[]
+	# array=[]
 	# Send ping requests to a server separated by approximately one second
-	for i in range(0,4):
+	for i in range(4):
 		delay = doOnePing(dest, timeout)
 		print(delay)
 		time.sleep(1)  # one second
 		# array=[i]
 		# array[i]=delay #first loop at 1, then 2, then 3 ...
 		# array.insert(i,int(delay*1000))
-		array.append(delay)
+		# array.append(delay)
 
 	# Calculate vars values and return them
 	packet_min = (min(array)*1000) 
@@ -140,7 +144,7 @@ def ping(host, timeout=1):
 	packet_avg = (mean(array)*1000) 
 	stdev_var = (stdev(array)*1000) 
 	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
-	return 0
+	return vars
 	# return delay
 
 if __name__ == '__main__':
