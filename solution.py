@@ -140,7 +140,7 @@ def ping(host, timeout=1):
 	packet_avg = (mean(array)*1000) 
 	stdev_var = (stdev(array)*1000) 
 	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
-	return vars
+	return 0
 	# return delay
 
 if __name__ == '__main__':
