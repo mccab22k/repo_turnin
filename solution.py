@@ -23,16 +23,16 @@ def checksum(string):
 		csum &= 0xffffffff
 		count += 2
 
-		if countTo < len(string):
-			csum += (string[len(string) - 1])
-			csum &= 0xffffffff
+	if countTo < len(string):
+		csum += (string[len(string) - 1])
+		csum &= 0xffffffff
 
-			csum = (csum >> 16) + (csum & 0xffff)
-			csum = csum + (csum >> 16)
-			answer = ~csum
-			answer = answer & 0xffff
-			answer = answer >> 8 | (answer << 8 & 0xff00)
-			return answer
+	csum = (csum >> 16) + (csum & 0xffff)
+	csum = csum + (csum >> 16)
+	answer = ~csum
+	answer = answer & 0xffff
+	answer = answer >> 8 | (answer << 8 & 0xff00)
+	return answer
 
 def receiveOnePing(mySocket, ID, timeout, destAddr):
 	timeLeft = timeout
@@ -41,27 +41,27 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
 		startedSelect = time.time()
 		whatReady = select.select([mySocket], [], [], timeLeft)
 		howLongInSelect = (time.time() - startedSelect)
-	if whatReady[0] == []:  # Timeout
-		return "Request timed out."
-
-	timeReceived = time.time()
-	recPacket, addr = mySocket.recvfrom(1024)
-
-	# Fill in start
-	 # Fetch the ICMP header ICMP_ECHO_REPLY from the IP packet
-	icmph = recPacket[20:28]
-	type, code, checksum, packet, sq = struct.unpack("bbHHh", icmph)
-
-	# In the “receiveOnePing” method, you need to receive the structure ICMP_ECHO_REPLY and fetch the information you need, such as checksum, sequence number, time to live (TTL), etc. Study the “sendOnePing” method before trying to complete the “receiveOnePing” method.
-	if packet == ID:
-		double = struct.calcsize("d")
-		timeSent = struct.unpack("d", recPacket[28:28 + double])[0]
-		return (timeReceived - timeSent)
-
-	# Fill in end
-	timeLeft = timeLeft - howLongInSelect
-	if timeLeft <= 0:
+		if whatReady[0] == []:  # Timeout
 			return "Request timed out."
+
+		timeReceived = time.time()
+		recPacket, addr = mySocket.recvfrom(1024)
+
+		# Fill in start
+		# Fetch the ICMP header ICMP_ECHO_REPLY from the IP packet
+		icmph = recPacket[20:28]
+		icmptype, code, checksum, packet, sq = struct.unpack("bbHHh", icmph)
+
+		# In the “receiveOnePing” method, you need to receive the structure ICMP_ECHO_REPLY and fetch the information you need, such as checksum, sequence number, time to live (TTL), etc. Study the “sendOnePing” method before trying to complete the “receiveOnePing” method.
+		if packet == ID:
+			double = struct.calcsize("d")
+			timeSent = struct.unpack("d", recPacket[28:28 + double])[0]
+			return (timeReceived - timeSent)
+
+		# Fill in end
+		timeLeft = timeLeft - howLongInSelect
+		if timeLeft <= 0:
+				return "Request timed out."
 
 #do not change
 def sendOnePing(mySocket, destAddr, ID):
