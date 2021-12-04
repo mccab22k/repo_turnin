@@ -5,14 +5,14 @@ import sys
 import struct
 import time
 import select
-import binascii
+# import binascii
 
 # Should use stdev
 # you will need to add a few lines of code in order to calculate minimum time, average time, maximum time, and stdev time and print the results like in the operating system.
 
 ICMP_ECHO_REQUEST = 8
 
-
+#no change
 def checksum(string):
 	csum = 0
 	countTo = (len(string) // 2) * 2
@@ -51,19 +51,20 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
 		# Fill in start
 		# Fetch the ICMP header ICMP_ECHO_REPLY from the IP packet
 		icmph = recPacket[20:28]
-		icmptype, code, checksum, packet, sq = struct.unpack("bbHHh", icmph)
+		icmpt, code, checksum, pckID, sq = struct.unpack("bbHHh", icmph)
 
 		# In the “receiveOnePing” method, you need to receive the structure ICMP_ECHO_REPLY and fetch the information you need, such as checksum, sequence number, time to live (TTL), etc. Study the “sendOnePing” method before trying to complete the “receiveOnePing” method.
-		if packet == ID:
+		if pckID == ID:
 			double = struct.calcsize("d")
 			timeSent = struct.unpack("d", recPacket[28:28 + double])[0]
 			difference=timeReceived-timeSent
 			return difference
 
 		# Fill in end
+
 		timeLeft = timeLeft - howLongInSelect
 		if timeLeft <= 0:
-				return "Request timed out."
+			return "Request timed out."
 
 #do not change
 def sendOnePing(mySocket, destAddr, ID):
@@ -85,8 +86,8 @@ def sendOnePing(mySocket, destAddr, ID):
 	else:
 		myChecksum = htons(myChecksum)
 
-		header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
-		packet = header + data
+	header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
+	packet = header + data
 
 	mySocket.sendto(packet, (destAddr, 1))  # AF_INET address must be tuple, not str
 	# Both LISTS and TUPLES consist of a number of objects
@@ -107,14 +108,14 @@ def doOnePing(destAddr, timeout):
 def ping(host, timeout=1):
 	# timeout=1 means: If one second goes by without a reply from the server,      # the client assumes that either the client's ping or the server's pong is lost
 	dest = gethostbyname(host)
-	# print("Pinging " + dest + " using Python:")
-	# print("")
+	print("Pinging " + dest + " using Python:")
+	print("")
 	
 	array=[0]*15
 	# Send ping requests to a server separated by approximately one second
 	for i in range(0,4):
 		delay = doOnePing(dest, timeout)
-		# print(delay)
+		print(delay)
 		time.sleep(1)  # one second
 		# array=[i]
 		array[i]=delay #first loop at 1, then 2, then 3 ...
