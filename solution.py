@@ -131,16 +131,17 @@ def ping(host, timeout=1):
 		time.sleep(1)  # one second
 		# array=[i]
 		# array[i]=delay #first loop at 1, then 2, then 3 ...
-		array.insert(i,int(delay*1000))
-		# array.append(delay)
+		# array.insert(i,int(delay*1000))
+		array.append(delay*1000)
 
 	# Calculate vars values and return them
-	packet_min = (min(array)) 
-	packet_max = (max(array)) 
-	packet_avg = (mean(array)) 
-	stdev_var = (stdev(array)) 
-	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
-	return vars
+	# packet_min = (min(array)) 
+	# packet_max = (max(array)) 
+	# packet_avg = (mean(array)) 
+	# stdev_var = (stdev(array)) 
+	# vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
+	# return vars
+	return delay
 
 if __name__ == '__main__':
 		ping("google.co.il")
