@@ -54,7 +54,18 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
 		icmpt, code, checksum, pckID, sq = struct.unpack("bbHHh", icmph)
 
 		# In the “receiveOnePing” method, you need to receive the structure ICMP_ECHO_REPLY and fetch the information you need, such as checksum, sequence number, time to live (TTL), etc. Study the “sendOnePing” method before trying to complete the “receiveOnePing” method.
-		if pckID == ID:
+		# The echo reply is an ICMP message generated in response to an echo request, and is mandatory for all hosts and routers.
+		# • Type and code must be set to 0.
+		# • The identifier and sequence number can be used by the client to determine which echo requests are associated with the echo replies.
+		# • The data received in the echo request must be entirely included in the echo reply.
+
+		if icmpt != 0:
+			return "type should be 0 in echo but was {}".format(icmpt)
+		if code != 0:
+			return "code should be 0 in echo but was {}".format(code)	
+		if pckID != ID:
+			return "packet ID and ID should match"
+		else:
 			double = struct.calcsize("d")
 			timeSent = struct.unpack("d", recPacket[28:28 + double])[0]
 			difference=timeReceived-timeSent
