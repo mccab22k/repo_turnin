@@ -57,7 +57,8 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
 		if packet == ID:
 			double = struct.calcsize("d")
 			timeSent = struct.unpack("d", recPacket[28:28 + double])[0]
-			return (timeReceived - timeSent)
+			difference=timeReceived-timeSent
+			return difference
 
 		# Fill in end
 		timeLeft = timeLeft - howLongInSelect
@@ -109,17 +110,15 @@ def ping(host, timeout=1):
 	# print("Pinging " + dest + " using Python:")
 	# print("")
 	
-	array=[]
-	# array=[0]*15
+	array=[0]*15
 	# Send ping requests to a server separated by approximately one second
 	for i in range(0,4):
 		delay = doOnePing(dest, timeout)
 		# print(delay)
 		time.sleep(1)  # one second
 		# array=[i]
-		# array[i]=delay #first loop at 1, then 2, then 3 ...
+		array[i]=delay #first loop at 1, then 2, then 3 ...
 		# array.insert(i,delay)
-		array.append(delay)				
 
 	# Calculate vars values and return them
 	packet_min = (min(array)) * 1000
