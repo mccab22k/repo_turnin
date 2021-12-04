@@ -1,11 +1,11 @@
 from socket import *
+from statistics import *
 import os
 import sys
 import struct
 import time
 import select
 import binascii
-import statistics
 
 # Should use stdev
 # you will need to add a few lines of code in order to calculate minimum time, average time, maximum time, and stdev time and print the results like in the operating system.
