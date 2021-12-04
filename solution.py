@@ -121,7 +121,7 @@ def ping(host, timeout=1):
 	packet_min = (min(array)) * 1000
 	packet_max = (max(array)) * 1000
 	packet_avg = (statistics.mean(array)) * 1000
-	stdev_var = (stdev(array)) * 1000
+	stdev_var = (statistics.stdev(array)) * 1000
 	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
 	return vars
 
