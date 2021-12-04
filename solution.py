@@ -109,13 +109,13 @@ def ping(host, timeout=1):
 	# print("Pinging " + dest + " using Python:")
 	# print("")
 	
-	array=[]
+	int array=[]
 	# Send ping requests to a server separated by approximately one second
 	for i in range(0,4):
 		delay = doOnePing(dest, timeout)
 		print(delay)
 		time.sleep(1)  # one second
-		array.insert(int(i),int(delay))				
+		array.insert(i,int(delay))				
 
 	# Calculate vars values and return them
 	packet_min = (min(array)) * 1000
