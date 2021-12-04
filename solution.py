@@ -131,14 +131,14 @@ def ping(host, timeout=1):
 		time.sleep(1)  # one second
 		# array=[i]
 		# array[i]=delay #first loop at 1, then 2, then 3 ...
-		array.insert(i,delay)
+		array.insert(i,delay*1000)
 		# array.append(delay)
 
 	# Calculate vars values and return them
-	packet_min = (min(array)) * 1000
-	packet_max = (max(array)) * 1000
-	packet_avg = (mean(array)) * 1000
-	stdev_var = (stdev(array)) * 1000
+	packet_min = (min(array)) 
+	packet_max = (max(array)) 
+	packet_avg = (mean(array)) 
+	stdev_var = (stdev(array)) 
 	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
 	return vars
 
