@@ -116,7 +116,8 @@ def ping(host, timeout=1):
 		# print(delay)
 		time.sleep(1)  # one second
 		# array=[i]
-		array.insert(i,delay)				
+		array[i]=delay
+		# array.insert(i,delay)				
 
 	# Calculate vars values and return them
 	packet_min = (min(array)) * 1000
