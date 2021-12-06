@@ -130,7 +130,7 @@ def ping(host, timeout=1):
 
 	array=[]
 	# Send ping requests to a server separated by approximately one second
-	for i in [0,1,2,3,4]:
+	for i in range(0,4):
 		delay = doOnePing(dest, timeout)*1000
 		print(delay)
 		time.sleep(1)  # one second
