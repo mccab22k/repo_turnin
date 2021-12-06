@@ -4,6 +4,7 @@ import os
 import sys
 import struct
 import time
+import itertools
 import select
 # import binascii
 
@@ -129,8 +130,10 @@ def ping(host, timeout=1):
 
 	array=[]
 	# Send ping requests to a server separated by approximately one second
-	i=0
-	for i in range(0,4):
+	
+	print("")
+	for _ in itertools.repeat(None, 4):
+	# for i in range(0,4):
 		delay = doOnePing(dest, timeout)*1000
 		print(delay)
 		time.sleep(1)  # one second
@@ -139,6 +142,7 @@ def ping(host, timeout=1):
 		# array.insert(i,int(delay*1000))
 		array.append(delay)
 	# Calculate vars values and return them
+	print("")
 	print("printing array: ")
 	print(array)
 	packet_min = (min(array)) 
@@ -153,7 +157,9 @@ def ping(host, timeout=1):
 	stdev_var = (stdev(array)) 
 	print("stdev_var : ")
 	print(stdev_var)
+
 	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
+
 	print("printing vars: ")
 	print(vars)
 	return vars
