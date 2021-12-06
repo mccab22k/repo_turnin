@@ -126,7 +126,6 @@ def ping(host, timeout=1):
 	dest = gethostbyname(host)
 	print("Pinging " + dest + " using Python:")
 	print("")
-	# print(array)
 
 	array=[]
 	# Send ping requests to a server separated by approximately one second
@@ -142,9 +141,13 @@ def ping(host, timeout=1):
 	print("printing array: ")
 	print(array)
 	packet_min = (min(array)) 
+	print("packet min: " + packet_min)
 	packet_max = (max(array)) 
+	print("packet max: " + packet_max)
 	packet_avg = (mean(array)) 
+	print("packet avg: " + packet_avg)
 	stdev_var = (stdev(array)) 
+	print("stdev_var : " + stdev_var)
 	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
 	print("printing vars: ")
 	print(vars)
