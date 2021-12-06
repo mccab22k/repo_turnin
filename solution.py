@@ -127,10 +127,8 @@ def ping(host, timeout=1):
 	dest = gethostbyname(host)
 	print("Pinging " + dest + " using Python:")
 	print("")
-
 	# array=[]
 	# Send ping requests to a server separated by approximately one second
-	
 	print("")
 	for _ in itertools.repeat(None, 4):
 	# for i in range(0,4):
@@ -142,26 +140,26 @@ def ping(host, timeout=1):
 		# array.insert(i,int(delay*1000))
 		# array.append(delay)
 	# Calculate vars values and return them
-	print("")
-	print("printing array: ")
-	print(array)
+	# print("")
+	# print("printing array: ")
+	# print(array)
+
 	packet_min = (min(array)) 
-	print("packet min: ")
-	print(packet_min)
 	packet_max = (max(array)) 
-	print("packet max: ")
-	print(packet_max)
 	packet_avg = (mean(array)) 
-	print("packet avg: ")
-	print(packet_avg)
 	stdev_var = (stdev(array)) 
-	print("stdev_var : ")
-	print(stdev_var)
 
-	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
-
-	print("printing vars: ")
-	print(vars)
+	# print("packet min: ")
+	# print(packet_min)	
+	# print("packet max: ")
+	# print(packet_max)
+	# print("packet avg: ")
+	# print(packet_avg)
+	# print("stdev_var : ")
+	# print(stdev_var)
+	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev_var, 2))]
+	# print("printing vars: ")
+	# print(vars)
 	return vars
 	# return delay
 
