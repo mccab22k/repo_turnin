@@ -105,6 +105,7 @@ def sendOnePing(mySocket, destAddr, ID):
 	# which can be referenced by their position number within the object.
 
 array = []
+
 #no change
 def doOnePing(destAddr, timeout):
 	icmp = getprotobyname("icmp")
@@ -117,7 +118,7 @@ def doOnePing(destAddr, timeout):
 	array.append(delay)
 
 	mySocket.close()
-	return delay
+	return delay*1000
 
 #add in min, max, avg, stdv
 def ping(host, timeout=1):
@@ -125,19 +126,19 @@ def ping(host, timeout=1):
 	dest = gethostbyname(host)
 	print("Pinging " + dest + " using Python:")
 	print("")
-	
+	print(array)
+
 	# array=[0]*15
 	# array=[]
 	# Send ping requests to a server separated by approximately one second
 	for i in range(0,4):
-		delay = doOnePing(dest, timeout)
-		print(delay)
+		delay = doOnePing(dest, timeout)*1000
+		# print(delay)
 		time.sleep(1)  # one second
 		# array=[i]
 		# array[i]=delay #first loop at 1, then 2, then 3 ...
 		# array.insert(i,int(delay*1000))
 		# array.append(delay)
-	print(array)
 	# Calculate vars values and return them
 	packet_min = (min(array)*1000) 
 	packet_max = (max(array)*1000) 
