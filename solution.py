@@ -115,10 +115,10 @@ def doOnePing(destAddr, timeout):
 	sendOnePing(mySocket, destAddr, myID)
 	delay = receiveOnePing(mySocket, myID, timeout, destAddr)
 
-	array.append(delay)
+	# array.append(delay)
 
 	mySocket.close()
-	return delay*1000
+	return delay
 
 #add in min, max, avg, stdv
 def ping(host, timeout=1):
@@ -136,17 +136,19 @@ def ping(host, timeout=1):
 		# print(delay)
 		time.sleep(1)  # one second
 		# array=[i]
-		# array[i]=delay #first loop at 1, then 2, then 3 ...
+		array[i]=delay #first loop at 1, then 2, then 3 ...
 		# array.insert(i,int(delay*1000))
 		# array.append(delay)
 	# Calculate vars values and return them
-	packet_min = (min(array)*1000) 
-	packet_max = (max(array)*1000) 
-	packet_avg = (mean(array)*1000) 
-	stdev_var = (stdev(array)*1000) 
+	print(array)
+	packet_min = (min(array)) 
+	packet_max = (max(array)) 
+	packet_avg = (mean(array)) 
+	stdev_var = (stdev(array)) 
 	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
 	return vars
 	# return delay
 
 if __name__ == '__main__':
 		ping("google.co.il")
+
