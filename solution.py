@@ -139,13 +139,13 @@ def ping(host, timeout=1):
 		# array.insert(i,int(delay*1000))
 		# array.append(delay)
 	# Calculate vars values and return them
-	print("printing array: \n", array)
+	print("printing array: " + array)
 	packet_min = (min(array)) 
 	packet_max = (max(array)) 
 	packet_avg = (mean(array)) 
 	stdev_var = (stdev(array)) 
 	vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
-	print("printing vars: \n", vars)
+	print("printing vars: " + vars)
 	return vars
 	# return delay
 
