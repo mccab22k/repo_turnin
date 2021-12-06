@@ -135,9 +135,9 @@ def ping(host, timeout=1):
 		print(delay)
 		time.sleep(1)  # one second
 		# array=[i]
-		array[i]=delay #first loop at 1, then 2, then 3 ...
+		# array[i]=delay #first loop at 1, then 2, then 3 ...
 		# array.insert(i,int(delay*1000))
-		# array.append(delay)
+		array.append(delay)
 	# Calculate vars values and return them
 	print("printing array: ")
 	print(array)
