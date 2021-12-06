@@ -105,7 +105,7 @@ def sendOnePing(mySocket, destAddr, ID):
 	# Both LISTS and TUPLES consist of a number of objects
 	# which can be referenced by their position number within the object.
 
-# array = []
+array = []
 
 #no change
 def doOnePing(destAddr, timeout):
@@ -116,7 +116,7 @@ def doOnePing(destAddr, timeout):
 	sendOnePing(mySocket, destAddr, myID)
 	delay = receiveOnePing(mySocket, myID, timeout, destAddr)
 
-	# array.append(delay)
+	array.append(delay*1000)
 
 	mySocket.close()
 	return delay
@@ -128,7 +128,7 @@ def ping(host, timeout=1):
 	print("Pinging " + dest + " using Python:")
 	print("")
 
-	array=[]
+	# array=[]
 	# Send ping requests to a server separated by approximately one second
 	
 	print("")
@@ -140,7 +140,7 @@ def ping(host, timeout=1):
 		# array=[i]
 		# array[i]=delay #first loop at 1, then 2, then 3 ...
 		# array.insert(i,int(delay*1000))
-		array.append(delay)
+		# array.append(delay)
 	# Calculate vars values and return them
 	print("")
 	print("printing array: ")
