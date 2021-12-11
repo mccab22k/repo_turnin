@@ -62,6 +62,7 @@ def build_packet():
 	# So the function ending should look like this
 	packet = header + data
 	return packet
+
 #changes needed
 def get_route(hostname):
 	timeLeft = TIMEOUT
@@ -75,7 +76,7 @@ def get_route(hostname):
 			#Fill in start
 			icmp = socket.getprotobyname("icmp")
 			# Make a raw socket named mySocket
-            mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
+			mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
 			#Fill in end
 			mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
 			mySocket.settimeout(TIMEOUT)
@@ -155,4 +156,3 @@ def get_route(hostname):
 			finally:
 				mySocket.close()
 	return tracelist2
-
