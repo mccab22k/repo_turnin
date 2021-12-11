@@ -109,8 +109,8 @@ def get_route(hostname):
 			else:
 				#Fill in start
 				#Fetch the icmp type from the IP packet
-				icmp_header=recvPacket[20:28]
-				types,codes,checksum,pid,seq,=struct.unpack("bbHHh,icmp_header", icmp_header)
+				headericmp=recvPacket[20:28]
+				types,codes,checksum,pid,seq,=struct.unpack("bbHHh,icmp_header", headericmp)
 				#Fill in end
 				try: #try to fetch the hostname
 					#Fill in start
