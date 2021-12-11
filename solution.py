@@ -38,7 +38,7 @@ def checksum(string):
 	return answer
 
  #changes finished?
- def build_packet():
+def build_packet():
 	#Fill in start
 	# In the sendOnePing() method of the ICMP Ping exercise,
 	# firstly the header of our packet to be sent was made, 
